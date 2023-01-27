@@ -32,7 +32,7 @@ export default function StackNavigation() {
    ) : (
       <Stack.Navigator initialRouteName={nameNav.account}>
          <Stack.Group screenOptions={configStack.screenOptionsForHeaderDisable}>
-            <Stack.Screen name={nameNav.parametre} component={Parametre} />
+            <Stack.Screen name={nameNav.account} component={Account} />
          </Stack.Group>
       </Stack.Navigator>
    );

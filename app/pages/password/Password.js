@@ -68,7 +68,6 @@ export default function Password({ navigation }) {
       } else {
          if (passwordEnter === fakePassword) {
             navigation.navigate(nameNav.parametre);
-            dispatch(activeDeactiveTouchBack());
          } else if (passwordEnter !== fakePassword) {
             setPass1('o');
             setPass2('o');

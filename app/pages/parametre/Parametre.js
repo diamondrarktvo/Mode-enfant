@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { styles } from './styles';
 import {
    Button,
@@ -10,11 +10,14 @@ import {
    TouchableOpacity,
    Switch,
    Image,
+   BackHandler,
 } from 'react-native';
-
+import { activeDeactiveTouchBack } from '_utils/redux/actions/action_creators';
+import { useSelector, useDispatch } from 'react-redux';
 import { Icon } from '@rneui/themed';
 
 import { Colors } from '_theme/Colors';
+import { nameStackNavigation as nameNav } from '_utils/constante/NameStackNavigation';
 
 const image = {
    uri: 'https://static.vecteezy.com/ti/vecteur-libre/p3/3232304-nuage-soleil-et-montagne-paysage-ete-ciel-bleu-vectoriel.jpg',
@@ -27,6 +30,7 @@ const image2 = {
 };
 
 export default function Parametre({ navigation }) {
+   const dispatch = useDispatch();
    const [isEnabled, setIsEnabled] = useState(true);
    const [text, setText] = useState('Cliquer le switch!');
    const toggleSwitch = () => {
@@ -37,6 +41,22 @@ export default function Parametre({ navigation }) {
       }
       setIsEnabled((previousState) => !previousState);
    };
+
+   function handleBackButtonClick() {
+      navigation.navigate(nameNav.home);
+      dispatch(activeDeactiveTouchBack());
+      return true;
+   }
+   //change state isActive when backhandler is touched
+   useEffect(() => {
+      BackHandler.addEventListener('hardwareBackPress', handleBackButtonClick);
+      return () => {
+         BackHandler.removeEventListener(
+            'hardwareBackPress',
+            handleBackButtonClick
+         );
+      };
+   }, []);
    return (
       <View style={styles.container}>
          <ImageBackground
@@ -52,11 +72,11 @@ export default function Parametre({ navigation }) {
                   <Text
                      style={{
                         fontSize: 30,
+                        fontWeight: 'bold',
                         textAlign: 'center',
                         color: 'white',
                         padding: 8,
                         marginTop: 30,
-                        borderRadius: 50,
                      }}
                   >
                      Paramètres
@@ -65,12 +85,37 @@ export default function Parametre({ navigation }) {
                <View
                   style={{
                      backgroundColor: '#77f1ff',
-                     paddingVertical: 8,
+                     paddingVertical: 12,
                      paddingHorizontal: 8,
-                     marginHorizontal: 14,
+                     marginHorizontal: 24,
+                     marginVertical: 12,
                      borderRadius: 30,
                   }}
                >
+                  <View
+                     style={{
+                        borderWidth: 2,
+                        backgroundColor: 'red',
+                        borderColor: Colors.white,
+                        width: 50,
+                        height: 50,
+                        borderRadius: 50,
+                        position: 'absolute',
+                        zIndex: 2,
+                        top: -16,
+                        left: 24,
+                     }}
+                  >
+                     <Icon
+                        name={'chevron-left'}
+                        color={Colors.white}
+                        size={48}
+                        onPress={() => {
+                           navigation.navigate(nameNav.home);
+                           dispatch(activeDeactiveTouchBack());
+                        }}
+                     />
+                  </View>
                   <View
                      style={{
                         backgroundColor: '#fef2e2',
