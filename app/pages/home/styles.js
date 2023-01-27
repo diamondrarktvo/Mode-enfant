@@ -4,41 +4,50 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
    view_container: {
       flex: 1,
-      marginTop: 30,
-      paddingHorizontal: 15,
-      backgroundColor: Colors.violet,
    },
-   view_profil: {
-      paddingHorizontal: 8,
-      paddingVertical: 5,
-      width: 80,
-      borderRadius: 28,
-      borderWidth: 5,
-      borderColor: Colors.white,
-      backgroundColor: '#f8bd47',
+   backgroundImage: {
+      flex: 1,
+      paddingTop: 166,
+      justifyContent: 'space-between',
    },
-   profil: {
-      width: 60,
-      height: 60,
-   },
-   view_card: {
-      weight: 360,
-      borderRadius: 16,
-      padding: 12,
-      backgroundColor: Colors.background,
-   },
-   view_list_profil: {},
-   view_container_renderItem: {
+   view_application: {
+      marginHorizontal: 8,
+      width: '95%',
+      height: 'auto',
       display: 'flex',
       flexDirection: 'row',
-      alignContent: 'space-between',
+      justifyContent: 'flex-start',
+      flexWrap: 'wrap',
    },
-   icon_profil_flat: {
-      width: 32,
-      height: 32,
+   one_applis: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginHorizontal: 8,
    },
-   boutton: {
-      width: 150,
-      borderRadius: 15,
+   icon_applis: {
+      width: 80,
+      height: 80,
+   },
+   name_applis: {
+      fontSize: 22,
+      fontWeight: '600',
+      color: Colors.black,
+   },
+   view_bottom_bar: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      marginHorizontal: 18,
+      marginTop: 28,
+      marginBottom: 52,
+   },
+   bottom_bar: {
+      backgroundColor: Colors.yellow,
+      padding: 5,
+      borderRadius: 30,
+      borderWidth: 6,
+      borderColor: '#fae2b2',
    },
 });

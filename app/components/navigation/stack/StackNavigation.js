@@ -1,6 +1,6 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import { nameStackNavigation as nameNav } from '_utils';
-import { Home } from '_pages';
+import { Account, Home, Password } from '_pages';
 import { configStack } from './configStack';
 import { useSelector } from 'react-redux';
 
@@ -12,6 +12,10 @@ export default function StackNavigation() {
       <Stack.Navigator initialRouteName={nameNav.home}>
          <Stack.Group screenOptions={{ headerShown: false }}>
             <Stack.Screen name={nameNav.home} component={Home} />
+         </Stack.Group>
+
+         <Stack.Group screenOptions={{ headerShown: false }}>
+            <Stack.Screen name={nameNav.password} component={Password} />
          </Stack.Group>
 
          {/*<Stack.Group screenOptions={configStack.screenOptionsForHeaderShown}>
@@ -27,7 +31,7 @@ export default function StackNavigation() {
    ) : (
       <Stack.Navigator initialRouteName={nameNav.login}>
          <Stack.Group screenOptions={configStack.screenOptionsForHeaderDisable}>
-            <Stack.Screen name={nameNav.home} component={Home} />
+            <Stack.Screen name={nameNav.account} component={Account} />
          </Stack.Group>
       </Stack.Navigator>
    );
