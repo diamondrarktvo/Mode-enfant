@@ -13,7 +13,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { styles } from './styles';
-import { Icon, CheckBox } from '@rneui/themed';
+import { Icon } from '@rneui/themed';
 
 import { nameStackNavigation as nameNav } from '_utils/constante/NameStackNavigation';
 import { Colors } from '_theme/Colors';

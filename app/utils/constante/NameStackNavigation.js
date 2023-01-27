@@ -3,4 +3,5 @@ export const nameStackNavigation = {
    account: 'Compte',
    about: 'About',
    password: 'Password',
+   parametre: 'Parametre',
 };
