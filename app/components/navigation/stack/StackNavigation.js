@@ -1,6 +1,5 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import { nameStackNavigation as nameNav } from '_utils';
-import BottomBarTabs from '_components/navigation/tabs/BottomBarTabs';
 import { Home } from '_pages';
 import { configStack } from './configStack';
 import { useSelector } from 'react-redux';
@@ -12,7 +11,7 @@ export default function StackNavigation() {
    return isStarted ? (
       <Stack.Navigator initialRouteName={nameNav.home}>
          <Stack.Group screenOptions={{ headerShown: false }}>
-            <Stack.Screen name={nameNav.home} component={BottomBarTabs} />
+            <Stack.Screen name={nameNav.home} component={Home} />
          </Stack.Group>
 
          {/*<Stack.Group screenOptions={configStack.screenOptionsForHeaderShown}>

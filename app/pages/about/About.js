@@ -7,9 +7,9 @@ import { styles } from './styles';
 export default function About({ navigation }) {
    const dispatch = useDispatch();
 
-   /*const langueActual = useSelector(
+   const langueActual = useSelector(
       (selector) => selector.fonctionnality.langue
-   );*/
+   );
 
    return (
       <KeyboardAwareScrollView style={{ backgroundColor: Colors.background }}>

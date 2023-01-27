@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+/*import { StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Colors } from '_theme/Colors';
 import { Icon } from '@rneui/themed';
@@ -70,4 +70,4 @@ const styles = StyleSheet.create({
       padding: 5,
       marginHorizontal: 30,
    },
-});
+});*/
