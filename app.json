@@ -1,7 +1,7 @@
 {
    "expo": {
-      "name": "maelou",
-      "slug": "maelou",
+      "name": "mode enfant",
+      "slug": "mode enfant",
       "version": "1.0.0",
       "orientation": "portrait",
       "icon": "./assets/icon.png",
@@ -28,7 +28,7 @@
                "apiKey": "AIzaSyCfeV-dI5JYOl39mJDqsyL8xtRykQHU29I"
             }
          },
-         "package": "loit.apk"
+         "package": "mode_enfant.apk"
       },
       "web": {
          "favicon": "./assets/favicon.png"

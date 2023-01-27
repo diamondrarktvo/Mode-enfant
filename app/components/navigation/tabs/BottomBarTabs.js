@@ -4,8 +4,7 @@ import { Colors } from '_theme/Colors';
 import { Icon } from '@rneui/themed';
 import { useSelector } from 'react-redux';
 
-//import screen bottom tab
-import { Home, About, Recherche, Favoris } from '_pages';
+import { Home, About } from '_pages';
 
 const Tab = createBottomTabNavigator();
 
@@ -37,34 +36,6 @@ export default function BottomBarTabs() {
                tabBarIcon: ({ focused }) => (
                   <Icon
                      name={'home'}
-                     color={focused ? Colors.violet : Colors.grey}
-                     size={26}
-                  />
-               ),
-            }}
-         />
-         <Tab.Screen
-            name="Recherche"
-            component={Recherche}
-            options={{
-               tabBarLabel: langueActual === 'fr' ? 'Recherche' : 'Hitady',
-               tabBarIcon: ({ focused }) => (
-                  <Icon
-                     name={'search'}
-                     color={focused ? Colors.violet : Colors.grey}
-                     size={26}
-                  />
-               ),
-            }}
-         />
-         <Tab.Screen
-            name="Favoris"
-            component={Favoris}
-            options={{
-               tabBarLabel: langueActual === 'fr' ? 'Favoris' : 'Ankafiziko',
-               tabBarIcon: ({ focused }) => (
-                  <Icon
-                     name={'favorite'}
                      color={focused ? Colors.violet : Colors.grey}
                      size={26}
                   />

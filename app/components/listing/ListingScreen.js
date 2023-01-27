@@ -41,7 +41,8 @@ export default function Listing({ navigation, route }) {
    const dataForFlatList = route.params.dataToList ?? dataPerThemeAndType;
 
    //all logics
-   const _renderItem = useCallback(({ item }) => {
+   {
+      /*const _renderItem = useCallback(({ item }) => {
       return (
          <TouchableOpacity
             activeOpacity={0.9}
@@ -160,7 +161,8 @@ export default function Listing({ navigation, route }) {
             </View>
          </TouchableOpacity>
       );
-   }, []);
+   }, []);*/
+   }
 
    const _idKeyExtractor = (item, index) =>
       item?.id == null ? index.toString() : item.id.toString();
