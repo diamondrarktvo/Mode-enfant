@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
    View,
    Text,
@@ -8,6 +8,7 @@ import {
    ScrollView,
    FlatList,
    TouchableOpacity,
+   BackHandler,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -18,15 +19,37 @@ import { nameStackNavigation as nameNav } from '_utils/constante/NameStackNaviga
 import { Colors } from '_theme/Colors';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button } from '@rneui/base';
-import { getStarted } from '_utils/redux/actions/action_creators';
+import {
+   getStarted,
+   activeDeactiveTouchBack,
+} from '_utils/redux/actions/action_creators';
 
 export default function Home({ navigation }) {
    //all states
    const dispatch = useDispatch();
-
-   //const allArticles = useSelector((selector) => selector.article.articles);
-   //all efects
    const { t } = useTranslation();
+
+   const isTouchBackActive = useSelector(
+      (selector) => selector.fonctionnality.isTouchBackActive
+   );
+   //all efects
+   useEffect(() => {
+      if (isTouchBackActive === false) {
+         dispatch(activeDeactiveTouchBack());
+      }
+   }, []);
+
+   useEffect(() => {
+      if (isTouchBackActive) {
+         const backHandler = BackHandler.addEventListener(
+            'hardwareBackPress',
+            () => {
+               return true;
+            }
+         );
+         return () => backHandler.remove();
+      }
+   }, [isTouchBackActive]);
 
    //all components
 
@@ -61,6 +84,7 @@ export default function Home({ navigation }) {
                   size={32}
                   onPress={() => {
                      navigation.navigate(nameNav.password);
+                     dispatch(activeDeactiveTouchBack());
                   }}
                />
                <Icon

@@ -8,6 +8,7 @@ import {
    ScrollView,
    FlatList,
    TouchableOpacity,
+   BackHandler,
 } from 'react-native';
 import { styles } from './styles';
 import { Icon } from '@rneui/themed';
@@ -16,6 +17,7 @@ import { nameStackNavigation as nameNav } from '_utils/constante/NameStackNaviga
 import { Colors } from '_theme/Colors';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button } from '@rneui/base';
+import { activeDeactiveTouchBack } from '_utils/redux/actions/action_creators';
 
 export default function Password({ navigation }) {
    //all states
@@ -40,17 +42,33 @@ export default function Password({ navigation }) {
       setClickCount(1);
    }, []);
 
+   function handleBackButtonClick() {
+      navigation.goBack();
+      dispatch(activeDeactiveTouchBack());
+      return true;
+   }
+   //change state isActive when backhandler is touched
+   useEffect(() => {
+      BackHandler.addEventListener('hardwareBackPress', handleBackButtonClick);
+      return () => {
+         BackHandler.removeEventListener(
+            'hardwareBackPress',
+            handleBackButtonClick
+         );
+      };
+   }, []);
+
    useEffect(() => {
       setPasswordEnter(pass1 + '' + pass2 + '' + pass3 + '' + pass4);
    }, [pass1, pass2, pass3, pass4]);
 
-   console.log('passwordEnter : ' + passwordEnter);
    useEffect(() => {
       if (passwordEnter.includes('o')) {
          return;
       } else {
          if (passwordEnter === fakePassword) {
             navigation.navigate(nameNav.home);
+            dispatch(activeDeactiveTouchBack());
          } else if (passwordEnter !== fakePassword) {
             setPass1('o');
             setPass2('o');

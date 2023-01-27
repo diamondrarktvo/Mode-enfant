@@ -1,9 +1,14 @@
 import { produce } from 'immer';
-import { getStarted, changeLanguage } from '../actions/action_creators';
+import {
+   getStarted,
+   activeDeactiveTouchBack,
+   changeLanguage,
+} from '../actions/action_creators';
 
 const initialState = {
    started: false,
    langue: 'fr',
+   isTouchBackActive: false,
 };
 
 export const functionnalityReducer = (state = initialState, action) => {
@@ -15,6 +20,10 @@ export const functionnalityReducer = (state = initialState, action) => {
       case changeLanguage().type:
          return produce(state, (draft) => {
             draft.langue = action.payload;
+         });
+      case activeDeactiveTouchBack().type:
+         return produce(state, (draft) => {
+            draft.isTouchBackActive = !draft.isTouchBackActive;
          });
       default:
          return state;

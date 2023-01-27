@@ -5,10 +5,15 @@ import {
    GET_ALL_THEMATIQUES,
    GET_ALL_TYPES,
    CHANGE_LANGUAGE,
+   ACTIVE_DEACTIVE_TOUCH_BACK,
 } from './action_names';
 
 export const getStarted = () => ({
    type: GET_STARTED,
+});
+
+export const activeDeactiveTouchBack = () => ({
+   type: ACTIVE_DEACTIVE_TOUCH_BACK,
 });
 
 export const changeLanguage = (langue) => ({

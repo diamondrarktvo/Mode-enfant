@@ -21,15 +21,14 @@ export const styles = StyleSheet.create({
       flexDirection: 'row',
       justifyContent: 'space-evenly',
       alignItems: 'center',
-      marginTop: 216,
+      marginTop: 210,
       marginHorizontal: 60,
    },
    forgetPassword: {
-      marginTop: 40,
+      marginTop: 36,
    },
    keyboard_numeric_list: {
       width: 240,
-      marginVertical: 24,
       marginHorizontal: 80,
       display: 'flex',
       flexDirection: 'row',
