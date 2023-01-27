@@ -87,7 +87,7 @@ export default function Parametre({ navigation }) {
                            paddingVertical: 12,
                            paddingHorizontal: 12,
                            marginVertical: 8,
-                           marginHorizontal: 14,
+                           marginHorizontal: 8,
                            borderRadius: 30,
                         }}
                      >
@@ -126,23 +126,6 @@ export default function Parametre({ navigation }) {
                               Limites de temps de{'\n'} l'utilisation de
                               l'appareil
                            </Text>
-                           <Icon
-                              name={'chevron-right'}
-                              color={Colors.blue}
-                              size={32}
-                           />
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                           style={styles.view_one_item}
-                           onPress={() => {
-                              alert('Rediriger vers la page correspondante!');
-                           }}
-                        >
-                           <Image
-                              source={require('_images/fondecran.png')}
-                              style={{ width: 30, height: 30, marginRight: 50 }}
-                           />
-                           <Text style={styles.text}>Fond d'écran</Text>
                            <Icon
                               name={'chevron-right'}
                               color={Colors.blue}
