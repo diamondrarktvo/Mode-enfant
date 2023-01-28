@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
    },
    view_application: {
       marginHorizontal: 8,
-      width: '95%',
+      width: '100%',
       height: 'auto',
       display: 'flex',
       flexDirection: 'row',
@@ -31,7 +31,7 @@ export const styles = StyleSheet.create({
       height: 80,
    },
    name_applis: {
-      fontSize: 22,
+      fontSize: 18,
       fontWeight: '600',
       color: Colors.black,
    },

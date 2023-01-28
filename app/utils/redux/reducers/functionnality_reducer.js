@@ -95,7 +95,7 @@ const initialState = {
          url: '',
       },
    ],
-   password: '1404',
+   password: '0000',
 };
 
 export const functionnalityReducer = (state = initialState, action) => {
