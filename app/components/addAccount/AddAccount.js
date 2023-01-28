@@ -1,14 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-   View,
-   Text,
-   Image,
-   SafeAreaView,
-   FlatList,
-   TouchableOpacity,
-   BackHandler,
-} from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { View, Text, Image, BackHandler } from 'react-native';
 import { styles } from './styles';
 import { Icon, Input, CheckBox } from '@rneui/themed';
 

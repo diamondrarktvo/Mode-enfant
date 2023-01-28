@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import {
    View,
@@ -7,6 +7,7 @@ import {
    ImageBackground,
    TouchableOpacity,
    BackHandler,
+   Linking,
 } from 'react-native';
 import { styles } from './styles';
 import { Icon } from '@rneui/themed';
@@ -68,10 +69,22 @@ export default function Home({ navigation }) {
          >
             <View style={styles.view_application}>
                {appsCheckedToList.map((app) => (
-                  <View style={styles.one_applis} key={app.id}>
-                     <Image style={styles.icon_applis} source={app.icone} />
-                     <Text style={styles.name_applis}>{app.nom}</Text>
-                  </View>
+                  <TouchableOpacity
+                     key={app.id}
+                     activeOpacity={0.7}
+                     onPress={() => {
+                        if (app.nom === 'Setting') {
+                           Linking.openSettings();
+                        } else {
+                           Linking.openURL(app.url);
+                        }
+                     }}
+                  >
+                     <View style={styles.one_applis}>
+                        <Image style={styles.icon_applis} source={app.icone} />
+                        <Text style={styles.name_applis}>{app.nom}</Text>
+                     </View>
+                  </TouchableOpacity>
                ))}
             </View>
             <View style={styles.view_bottom_bar}>

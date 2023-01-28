@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { styles } from './styles';
 import {
-   Button,
    View,
    Text,
-   StyleSheet,
-   ScrollView,
    ImageBackground,
    TouchableOpacity,
    Switch,
@@ -21,12 +18,6 @@ import { nameStackNavigation as nameNav } from '_utils/constante/NameStackNaviga
 
 const image = {
    uri: 'https://static.vecteezy.com/ti/vecteur-libre/p3/3232304-nuage-soleil-et-montagne-paysage-ete-ciel-bleu-vectoriel.jpg',
-};
-const image1 = {
-   uri: 'https://img.freepik.com/vecteurs-libre/enfants-heureux-sautant-prairie-ete_74855-5852.jpg?w=2000',
-};
-const image2 = {
-   uri: 'https://icon-library.com/images/add-image-icon/add-image-icon-5.jpg',
 };
 
 export default function Parametre({ navigation }) {

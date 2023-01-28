@@ -30,16 +30,6 @@ export default function StackNavigation() {
                component={ChangePassword}
             />
          </Stack.Group>
-
-         {/*<Stack.Group screenOptions={configStack.screenOptionsForHeaderShown}>
-            <Stack.Screen
-               name={nameNav.listPage}
-               component={Listing}
-               options={({ route }) => ({
-                  title: route.params.titleScreen,
-               })}
-            />
-            </Stack.Group>*/}
       </Stack.Navigator>
    ) : (
       <Stack.Navigator initialRouteName={nameNav.account}>

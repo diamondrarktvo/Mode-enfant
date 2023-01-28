@@ -1,20 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import {
-   View,
-   Text,
-   Image,
-   SafeAreaView,
-   FlatList,
-   TouchableOpacity,
-   BackHandler,
-} from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { View, Text, Image, BackHandler } from 'react-native';
 import { styles } from './styles';
 import { Icon, Input, CheckBox } from '@rneui/themed';
 
 import { nameStackNavigation as nameNav } from '_utils/constante/NameStackNavigation';
 import { Colors } from '_theme/Colors';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Button } from '@rneui/base';
 import { editAccount } from '_utils/redux/actions/action_creators';
 
