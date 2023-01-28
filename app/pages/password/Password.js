@@ -24,7 +24,7 @@ import {
 
 export default function Password({ navigation, route }) {
    //all states
-   const fakePassword = '1404';
+   const password = useSelector((selector) => selector.fonctionnality.password);
    const directionAfter = route.params.direction;
    const [passwordEnter, setPasswordEnter] = useState('oooo');
    const dispatch = useDispatch();
@@ -70,11 +70,11 @@ export default function Password({ navigation, route }) {
       if (passwordEnter.includes('o')) {
          return;
       } else {
-         if (passwordEnter === fakePassword) {
+         if (passwordEnter === password) {
             if (directionAfter === 'Compte') {
                dispatch(getStarted());
             } else navigation.navigate(`${directionAfter}`);
-         } else if (passwordEnter !== fakePassword) {
+         } else if (passwordEnter !== password) {
             setPass1('o');
             setPass2('o');
             setPass3('o');

@@ -8,6 +8,7 @@ import {
    deleteAccount,
    editAccount,
    addCheckedApps,
+   changePassword,
 } from '../actions/action_creators';
 
 const initialState = {
@@ -40,6 +41,7 @@ const initialState = {
          icone: require('_images/game.png'),
       },
    ],
+   password: '1404',
 };
 
 export const functionnalityReducer = (state = initialState, action) => {
@@ -84,6 +86,10 @@ export const functionnalityReducer = (state = initialState, action) => {
       case addCheckedApps().type:
          return produce(state, (draft) => {
             draft.apps_checked = [...action.payload];
+         });
+      case changePassword().type:
+         return produce(state, (draft) => {
+            draft.password = action.payload;
          });
       default:
          return state;

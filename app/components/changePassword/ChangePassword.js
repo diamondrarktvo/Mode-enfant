@@ -12,13 +12,15 @@ import { Icon } from '@rneui/themed';
 import { nameStackNavigation as nameNav } from '_utils/constante/NameStackNavigation';
 import { Colors } from '_theme/Colors';
 import { useSelector, useDispatch } from 'react-redux';
-import { activeDeactiveTouchBack } from '_utils/redux/actions/action_creators';
+import {
+   activeDeactiveTouchBack,
+   changePassword,
+} from '_utils/redux/actions/action_creators';
 
 export default function ChangePassword({ navigation }) {
    //all states
-   const oldPassword = '1404';
+   const [password, setPassWord] = useState('');
    const [passwordEnter, setPasswordEnter] = useState('oooo');
-   const [newPasswordEnter, setNewPasswordEnter] = useState('oooo');
    const [isOldPass, setIsOldPass] = useState(false);
    const [texteInfo, setTexteInfo] = useState(
       "Saisissez l'ancien mot de passe"
@@ -31,7 +33,9 @@ export default function ChangePassword({ navigation }) {
    const [numeric, setNumeric] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]);
    const [clickCount, setClickCount] = useState(1);
 
-   //const allArticles = useSelector((selector) => selector.article.articles);
+   const passwordFromSelector = useSelector(
+      (selector) => selector.fonctionnality.password
+   );
    //all efects
 
    useEffect(() => {
@@ -40,11 +44,8 @@ export default function ChangePassword({ navigation }) {
       setPass3('o');
       setPass4('o');
       setClickCount(1);
+      setPassWord(passwordFromSelector);
    }, []);
-
-   console.log('passwordEnter : ', passwordEnter);
-   console.log('isOldPass : ', isOldPass);
-   console.log('newPasswordEnter : ', newPasswordEnter);
 
    function handleBackButtonClick() {
       navigation.goBack();
@@ -72,15 +73,15 @@ export default function ChangePassword({ navigation }) {
          if (passwordEnter.includes('o')) {
             return;
          } else {
-            if (passwordEnter === oldPassword) {
+            if (passwordEnter === password) {
                setPass1('o');
                setPass2('o');
                setPass3('o');
                setPass4('o');
                setTexteInfo('Saisir le nouveau mot de passe.');
-               setIsOldPass(true);
                setPasswordEnter('oooo');
-            } else if (passwordEnter !== oldPassword) {
+               setIsOldPass(true);
+            } else if (passwordEnter !== password) {
                setPass1('o');
                setPass2('o');
                setPass3('o');
@@ -95,12 +96,10 @@ export default function ChangePassword({ navigation }) {
 
    useEffect(() => {
       if (isOldPass) {
-         setPasswordEnter('oooo');
-         if (passwordEnter !== 'oooo') {
-            newPasswordEnter(passwordEnter);
-         }
+         dispatch(changePassword(passwordEnter));
+         return;
       }
-   }, [isOldPass]);
+   }, [isOldPass, passwordEnter]);
    //all components Saisissez votre mot de passe
 
    return (
@@ -232,6 +231,10 @@ export default function ChangePassword({ navigation }) {
                                     break;
                                  case 4:
                                     setPass4(chiffre);
+                                    if (isOldPass) {
+                                       setTexteInfo('Mot de passe mis à jour');
+                                       navigation.navigate(nameNav.parametre);
+                                    }
                                     setClickCount(1); //setClickCount(clickCount + 1);
                                     break;
                                  default:

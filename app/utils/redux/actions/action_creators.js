@@ -7,6 +7,7 @@ import {
    CHANGE_LANGUAGE,
    ACTIVE_DEACTIVE_TOUCH_BACK,
    ADD_APPS_TO_CHECKED,
+   CHANGE_PASSWORD,
 } from './action_names';
 
 export const getStarted = () => ({
@@ -45,4 +46,9 @@ export const addAccount = (compte) => ({
 export const addCheckedApps = (apps) => ({
    type: ADD_APPS_TO_CHECKED,
    payload: apps,
+});
+
+export const changePassword = (newPassword) => ({
+   type: CHANGE_PASSWORD,
+   payload: newPassword,
 });
