@@ -1,38 +1,43 @@
 import React, { useEffect, useState } from 'react';
+import { StatusBar } from 'expo-status-bar';
 import {
    View,
    Text,
    Image,
-   SafeAreaView,
    ImageBackground,
-   ScrollView,
-   FlatList,
    TouchableOpacity,
    BackHandler,
 } from 'react-native';
-import { useTranslation } from 'react-i18next';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { styles } from './styles';
 import { Icon } from '@rneui/themed';
 
 import { nameStackNavigation as nameNav } from '_utils/constante/NameStackNavigation';
 import { Colors } from '_theme/Colors';
 import { useSelector, useDispatch } from 'react-redux';
-import { Button } from '@rneui/base';
-import {
-   getStarted,
-   activeDeactiveTouchBack,
-} from '_utils/redux/actions/action_creators';
+import { activeDeactiveTouchBack } from '_utils/redux/actions/action_creators';
 
 export default function Home({ navigation }) {
    //all states
    const dispatch = useDispatch();
-   const { t } = useTranslation();
 
    const isTouchBackActive = useSelector(
       (selector) => selector.fonctionnality.isTouchBackActive
    );
-   //all efects
+
+   //array of id contain all apps check
+   const appsChecked = useSelector(
+      (selector) => selector.fonctionnality.apps_checked
+   );
+   //all apps in phone
+   const allApps = useSelector(
+      (selector) => selector.fonctionnality.all_apps_in_phone
+   );
+
+   //all apps checked
+   let appsCheckedToList = allApps.filter((app) => {
+      return appsChecked.includes(app.id);
+   });
+   //all effects
    useEffect(() => {
       if (isTouchBackActive === false) {
          dispatch(activeDeactiveTouchBack());
@@ -55,26 +60,19 @@ export default function Home({ navigation }) {
 
    return (
       <View style={styles.view_container}>
+         <StatusBar hidden={true} />
          <ImageBackground
             source={require('_images/bg_7.jpeg')}
             resizeMode="stretch"
             style={styles.backgroundImage}
          >
             <View style={styles.view_application}>
-               <View style={styles.one_applis}>
-                  <Image
-                     style={styles.icon_applis}
-                     source={require('_images/twitter.png')}
-                  />
-                  <Text style={styles.name_applis}>Twitter</Text>
-               </View>
-               <View style={styles.one_applis}>
-                  <Image
-                     style={styles.icon_applis}
-                     source={require('_images/chrome.png')}
-                  />
-                  <Text style={styles.name_applis}>Chrome</Text>
-               </View>
+               {appsCheckedToList.map((app) => (
+                  <View style={styles.one_applis} key={app.id}>
+                     <Image style={styles.icon_applis} source={app.icone} />
+                     <Text style={styles.name_applis}>{app.nom}</Text>
+                  </View>
+               ))}
             </View>
             <View style={styles.view_bottom_bar}>
                <Icon
@@ -83,7 +81,9 @@ export default function Home({ navigation }) {
                   color={Colors.white}
                   size={32}
                   onPress={() => {
-                     navigation.navigate(nameNav.password);
+                     navigation.navigate(nameNav.password, {
+                        direction: 'Parametre',
+                     });
                      dispatch(activeDeactiveTouchBack());
                   }}
                />
@@ -93,7 +93,10 @@ export default function Home({ navigation }) {
                   color={Colors.white}
                   size={32}
                   onPress={() => {
-                     dispatch(getStarted());
+                     navigation.navigate(nameNav.password, {
+                        direction: 'Compte',
+                     });
+                     dispatch(activeDeactiveTouchBack());
                   }}
                />
             </View>

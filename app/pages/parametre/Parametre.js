@@ -137,8 +137,9 @@ export default function Parametre({ navigation }) {
                      >
                         <TouchableOpacity
                            style={styles.view_one_item}
+                           activeOpacity={0.8}
                            onPress={() => {
-                              alert('Rediriger vers la page correspondante!');
+                              navigation.navigate(nameNav.listApplication);
                            }}
                         >
                            <Image
@@ -197,8 +198,9 @@ export default function Parametre({ navigation }) {
                         </TouchableOpacity>
                         <TouchableOpacity
                            style={styles.view_one_item}
+                           activeOpacity={0.8}
                            onPress={() => {
-                              alert('Rediriger vers la page correspondante!');
+                              navigation.navigate(nameNav.changePassword);
                            }}
                         >
                            <Image

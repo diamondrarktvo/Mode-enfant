@@ -2,11 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {
    View,
    Text,
-   Image,
-   SafeAreaView,
    ImageBackground,
-   ScrollView,
-   FlatList,
    TouchableOpacity,
    BackHandler,
 } from 'react-native';
@@ -16,17 +12,17 @@ import { Icon } from '@rneui/themed';
 import { nameStackNavigation as nameNav } from '_utils/constante/NameStackNavigation';
 import { Colors } from '_theme/Colors';
 import { useSelector, useDispatch } from 'react-redux';
-import { Button } from '@rneui/base';
-import {
-   activeDeactiveTouchBack,
-   getStarted,
-} from '_utils/redux/actions/action_creators';
+import { activeDeactiveTouchBack } from '_utils/redux/actions/action_creators';
 
-export default function Password({ navigation, route }) {
+export default function ChangePassword({ navigation }) {
    //all states
-   const fakePassword = '1404';
-   const directionAfter = route.params.direction;
+   const oldPassword = '1404';
    const [passwordEnter, setPasswordEnter] = useState('oooo');
+   const [newPasswordEnter, setNewPasswordEnter] = useState('oooo');
+   const [isOldPass, setIsOldPass] = useState(false);
+   const [texteInfo, setTexteInfo] = useState(
+      "Saisissez l'ancien mot de passe"
+   );
    const dispatch = useDispatch();
    const [pass1, setPass1] = useState('o');
    const [pass2, setPass2] = useState('o');
@@ -45,6 +41,10 @@ export default function Password({ navigation, route }) {
       setPass4('o');
       setClickCount(1);
    }, []);
+
+   console.log('passwordEnter : ', passwordEnter);
+   console.log('isOldPass : ', isOldPass);
+   console.log('newPasswordEnter : ', newPasswordEnter);
 
    function handleBackButtonClick() {
       navigation.goBack();
@@ -66,22 +66,41 @@ export default function Password({ navigation, route }) {
       setPasswordEnter(pass1 + '' + pass2 + '' + pass3 + '' + pass4);
    }, [pass1, pass2, pass3, pass4]);
 
+   //when user enter correct oldPassword, the password that it enter is the new password
    useEffect(() => {
-      if (passwordEnter.includes('o')) {
-         return;
-      } else {
-         if (passwordEnter === fakePassword) {
-            if (directionAfter === 'Compte') {
-               dispatch(getStarted());
-            } else navigation.navigate(`${directionAfter}`);
-         } else if (passwordEnter !== fakePassword) {
-            setPass1('o');
-            setPass2('o');
-            setPass3('o');
-            setPass4('o');
+      if (isOldPass === false) {
+         if (passwordEnter.includes('o')) {
+            return;
+         } else {
+            if (passwordEnter === oldPassword) {
+               setPass1('o');
+               setPass2('o');
+               setPass3('o');
+               setPass4('o');
+               setTexteInfo('Saisir le nouveau mot de passe.');
+               setIsOldPass(true);
+               setPasswordEnter('oooo');
+            } else if (passwordEnter !== oldPassword) {
+               setPass1('o');
+               setPass2('o');
+               setPass3('o');
+               setPass4('o');
+               setTexteInfo(
+                  'Mot de passe incorrecte. Veuillez saisir à nouveau.'
+               );
+            }
          }
       }
-   }, [passwordEnter]);
+   }, [passwordEnter, isOldPass]);
+
+   useEffect(() => {
+      if (isOldPass) {
+         setPasswordEnter('oooo');
+         if (passwordEnter !== 'oooo') {
+            newPasswordEnter(passwordEnter);
+         }
+      }
+   }, [isOldPass]);
    //all components Saisissez votre mot de passe
 
    return (
@@ -93,7 +112,7 @@ export default function Password({ navigation, route }) {
          >
             <View style={styles.textWarning}>
                <Text style={{ fontSize: 20, color: Colors.black }}>
-                  Saisissez votre mot de passe
+                  {texteInfo}
                </Text>
             </View>
 
@@ -190,18 +209,7 @@ export default function Password({ navigation, route }) {
                   }}
                />
             </View>
-            <TouchableOpacity activeOpacity={0.4} style={styles.forgetPassword}>
-               <Text
-                  style={{
-                     textAlign: 'center',
-                     fontSize: 18,
-                     fontWeight: 'bold',
-                     color: Colors.blue,
-                  }}
-               >
-                  Mot de passe oublié ?
-               </Text>
-            </TouchableOpacity>
+            <View style={styles.forgetPassword}></View>
             <View style={styles.keyboard_numeric_list}>
                {numeric.map((chiffre, index) => (
                   <View key={index}>

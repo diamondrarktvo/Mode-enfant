@@ -6,6 +6,7 @@ import {
    EDIT_ACCOUNT,
    CHANGE_LANGUAGE,
    ACTIVE_DEACTIVE_TOUCH_BACK,
+   ADD_APPS_TO_CHECKED,
 } from './action_names';
 
 export const getStarted = () => ({
@@ -39,4 +40,9 @@ export const editAccount = (compte) => ({
 export const addAccount = (compte) => ({
    type: ADD_ACCOUNT,
    payload: compte,
+});
+
+export const addCheckedApps = (apps) => ({
+   type: ADD_APPS_TO_CHECKED,
+   payload: apps,
 });

@@ -3,6 +3,8 @@ import { nameStackNavigation as nameNav } from '_utils';
 import { Account, Home, Password, Parametre } from '_pages';
 import AddAccount from '_components/addAccount/AddAccount';
 import EditAccount from '_components/editAccount/EditAccount';
+import ListApplications from '_components/listingApplis/ListingApplication';
+import ChangePassword from '_components/changePassword/ChangePassword';
 import { configStack } from './configStack';
 import { useSelector } from 'react-redux';
 
@@ -19,6 +21,14 @@ export default function StackNavigation() {
          <Stack.Group screenOptions={{ headerShown: false }}>
             <Stack.Screen name={nameNav.password} component={Password} />
             <Stack.Screen name={nameNav.parametre} component={Parametre} />
+            <Stack.Screen
+               name={nameNav.listApplication}
+               component={ListApplications}
+            />
+            <Stack.Screen
+               name={nameNav.changePassword}
+               component={ChangePassword}
+            />
          </Stack.Group>
 
          {/*<Stack.Group screenOptions={configStack.screenOptionsForHeaderShown}>
