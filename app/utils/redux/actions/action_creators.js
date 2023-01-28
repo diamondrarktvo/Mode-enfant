@@ -1,9 +1,9 @@
 import {
-   ADD_FAVORIS,
-   GET_ALL_ARTICLES,
+   ADD_ACCOUNT,
+   ACCOUNT_PICKED,
    GET_STARTED,
-   GET_ALL_THEMATIQUES,
-   GET_ALL_TYPES,
+   REMOVE_ACCOUNT,
+   EDIT_ACCOUNT,
    CHANGE_LANGUAGE,
    ACTIVE_DEACTIVE_TOUCH_BACK,
 } from './action_names';
@@ -21,22 +21,22 @@ export const changeLanguage = (langue) => ({
    payload: langue,
 });
 
-export const getAllArticles = (articles) => ({
-   type: GET_ALL_ARTICLES,
-   payload: articles,
+export const accountPick = (compte) => ({
+   type: ACCOUNT_PICKED,
+   payload: compte,
 });
 
-export const getAllThematiques = (thematiques) => ({
-   type: GET_ALL_THEMATIQUES,
-   payload: thematiques,
+export const deleteAccount = (id) => ({
+   type: REMOVE_ACCOUNT,
+   payload: id,
 });
 
-export const getAllTypes = (types) => ({
-   type: GET_ALL_TYPES,
-   payload: types,
+export const editAccount = (compte) => ({
+   type: EDIT_ACCOUNT,
+   payload: compte,
 });
 
-export const addFavoris = (article) => ({
-   type: ADD_FAVORIS,
-   payload: article,
+export const addAccount = (compte) => ({
+   type: ADD_ACCOUNT,
+   payload: compte,
 });

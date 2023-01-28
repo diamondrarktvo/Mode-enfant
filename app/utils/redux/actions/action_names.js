@@ -1,8 +1,8 @@
 export const GET_STARTED = 'fonctionnality/get_started';
-export const GET_ALL_THEMATIQUES = 'article/get_all_thematiques';
-export const GET_ALL_TYPES = 'article/get_all_types';
-export const GET_ALL_ARTICLES = 'article/get_all';
-export const ADD_FAVORIS = 'article/add_favoris';
+export const REMOVE_ACCOUNT = 'account/remove_account';
+export const EDIT_ACCOUNT = 'account/edit_account';
+export const ACCOUNT_PICKED = 'account/account_picked';
+export const ADD_ACCOUNT = 'account/add_account';
 export const CHANGE_LANGUAGE = 'fonctionnality/change_language';
 export const ACTIVE_DEACTIVE_TOUCH_BACK =
    'fonctionnality/active_deactive_touch_back';

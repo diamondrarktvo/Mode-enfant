@@ -32,12 +32,11 @@ const image2 = {
 export default function Parametre({ navigation }) {
    const dispatch = useDispatch();
    const [isEnabled, setIsEnabled] = useState(true);
-   const [text, setText] = useState('Cliquer le switch!');
    const toggleSwitch = () => {
       if (isEnabled) {
-         setText('Alerte repos desactivé');
+         alert('Alerte repos desactivé');
       } else {
-         setText('Repos dans 30 minutes');
+         alert('Repos dans 30 minutes');
       }
       setIsEnabled((previousState) => !previousState);
    };

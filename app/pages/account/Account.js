@@ -17,14 +17,18 @@ import { Colors } from '_theme/Colors';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button } from '@rneui/base';
 
-import { getStarted } from '_utils/redux/actions/action_creators';
-
-import { profil } from '_utils/constante/MockData';
+import {
+   getStarted,
+   accountPick,
+   deleteAccount,
+} from '_utils/redux/actions/action_creators';
 
 export default function Account({ navigation }) {
    //all states
    const dispatch = useDispatch();
-   //const allArticles = useSelector((selector) => selector.article.articles);
+   const [selectAccount, setSelectAccount] = useState(0);
+   const [accountPicked, setAccountPicked] = useState(null);
+   const accounts = useSelector((selector) => selector.fonctionnality.accounts);
    //all efects
    const { t } = useTranslation();
 
@@ -37,7 +41,11 @@ export default function Account({ navigation }) {
                <CheckBox
                   checkedIcon="dot-circle-o"
                   uncheckedIcon="circle-o"
-                  checked={item.check}
+                  checked={selectAccount === item.id}
+                  onPress={() => {
+                     setSelectAccount(item.id);
+                     setAccountPicked(item);
+                  }}
                   containerStyle={{ backgroundColor: Colors.grey }}
                />
                <View
@@ -69,7 +77,20 @@ export default function Account({ navigation }) {
                      {item.nom}
                   </Text>
                </View>
-               <Icon name={'edit'} color={Colors.blue} size={20} />
+               <Icon
+                  name={'delete'}
+                  color={Colors.red}
+                  size={20}
+                  onPress={() => dispatch(deleteAccount(item.id))}
+               />
+               <Icon
+                  name={'edit'}
+                  color={Colors.blue}
+                  size={20}
+                  onPress={() => {
+                     navigation.navigate(nameNav.editAccount, { compte: item });
+                  }}
+               />
             </View>
          </TouchableOpacity>
       );
@@ -93,11 +114,13 @@ export default function Account({ navigation }) {
                   marginVertical: 20,
                }}
             >
-               Nom de l'enfant
+               {accountPicked !== null
+                  ? accountPicked.nom
+                  : 'Choisir un compte'}
             </Text>
             <View style={styles.view_list_profil}>
                <FlatList
-                  data={profil}
+                  data={accounts}
                   key={'_'}
                   keyExtractor={_idKeyExtractor}
                   renderItem={_renderItem}
@@ -111,7 +134,12 @@ export default function Account({ navigation }) {
                   maxToRenderPerBatch={3}
                />
             </View>
-            <View style={styles.add_profil}>
+            <TouchableOpacity
+               style={styles.add_profil}
+               onPress={() => {
+                  navigation.navigate(nameNav.addAccount);
+               }}
+            >
                <Icon name={'add-circle'} color={Colors.blue} size={26} />
                <Text
                   style={{
@@ -123,7 +151,7 @@ export default function Account({ navigation }) {
                >
                   Ajouter un compte
                </Text>
-            </View>
+            </TouchableOpacity>
          </View>
          <View style={styles.view_boutton}>
             <Button
@@ -131,6 +159,7 @@ export default function Account({ navigation }) {
                containerStyle={styles.boutton}
                onPress={() => {
                   dispatch(getStarted());
+                  dispatch(accountPick(accountPicked));
                }}
             >
                Entrer

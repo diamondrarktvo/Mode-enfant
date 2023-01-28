@@ -4,4 +4,6 @@ export const nameStackNavigation = {
    about: 'About',
    password: 'Password',
    parametre: 'Parametre',
+   addAccount: 'Ajout_compte',
+   editAccount: 'Edit_compte',
 };
