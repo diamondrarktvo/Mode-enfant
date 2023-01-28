@@ -124,6 +124,7 @@ export default function EditAccount({ navigation, route }) {
             <Button
                color={childName === '' ? Colors.grey : '#f05e85'}
                containerStyle={styles.boutton}
+               disabled={childName === '' ? true : false}
                onPress={() => {
                   dispatch(editAccount(accountEdit));
                   setAccountEdit({ id: null, nom: '', sexe: '' });

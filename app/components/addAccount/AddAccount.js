@@ -116,6 +116,7 @@ export default function AddAccount({ navigation }) {
             <Button
                color={childName === '' ? Colors.grey : '#f05e85'}
                containerStyle={styles.boutton}
+               disabled={childName === '' ? true : false}
                onPress={() => {
                   dispatch(addAccount(newAccount));
                   setNewAccount({ id: null, nom: '', sexe: '' });

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
    View,
    Text,
@@ -7,7 +7,6 @@ import {
    FlatList,
    TouchableOpacity,
 } from 'react-native';
-import { useTranslation } from 'react-i18next';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { styles } from './styles';
 import { Icon, CheckBox } from '@rneui/themed';
@@ -30,7 +29,11 @@ export default function Account({ navigation }) {
    const [accountPicked, setAccountPicked] = useState(null);
    const accounts = useSelector((selector) => selector.fonctionnality.accounts);
    //all efects
-   const { t } = useTranslation();
+   useEffect(() => {
+      if (accounts.length === 0) {
+         setAccountPicked(null);
+      }
+   }, [accounts]);
 
    //all components
 
@@ -155,8 +158,9 @@ export default function Account({ navigation }) {
          </View>
          <View style={styles.view_boutton}>
             <Button
-               color="#f05e85"
+               color={accountPicked !== null ? '#f05e85' : Colors.grey}
                containerStyle={styles.boutton}
+               disabled={accountPicked === null ? true : false}
                onPress={() => {
                   dispatch(getStarted());
                   dispatch(accountPick(accountPicked));
